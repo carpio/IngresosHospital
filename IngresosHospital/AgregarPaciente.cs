@@ -18,7 +18,7 @@ namespace IngresosHospital
         {
             InitializeComponent();
         }
-
+        //Stackoverflow - Página para preguntas de programación o Tecnología
         private void botonGuardarMedico_Click(object sender, EventArgs e)
         {
             //1. Tomar los valores que se van a guardar
@@ -28,7 +28,7 @@ namespace IngresosHospital
             //Si Nombre y Apellidos son de tamaño menor o igual a 100, coninuar
             if (nombrePaciente.Length <= 100 && apellidoPaciente.Length <= 100)
             {
-                //2. Crear un objeto del tipo de la tabla (en este caso T_Paciente)
+                //2. Crear un objeto (entidad) del tipo de la tabla (en este caso T_Paciente)
                 T_Paciente nuevoPaciente = new T_Paciente();
 
                 //3. Asignar los valores que se tomaron en el paso 1

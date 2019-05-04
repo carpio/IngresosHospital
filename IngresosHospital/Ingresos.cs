@@ -95,11 +95,18 @@ namespace IngresosHospital
                 //3. Agregar el nuevo ingreso a su tabla (entidad u objeto)
                 //Guardar en la base de datos
                 dbContext.T_Ingresos.Add(nuevoIngreso);
-                dbContext.SaveChanges();
+                try
+                {
+                    dbContext.SaveChanges();
 
-                MessageBox.Show("Ingreso guardado con éxito");
+                    MessageBox.Show("Ingreso guardado con éxito");
 
-                cajaTextoHabitacion.Text = "";
+                    cajaTextoHabitacion.Text = "";
+                }
+                catch(Exception error)
+                {
+                    MessageBox.Show(error.Message);
+                }                
             }
             if(dialogo == DialogResult.No)
             {
