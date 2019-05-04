@@ -70,5 +70,12 @@ namespace IngresosHospital
             var ingresos = new Ingresos();
             ingresos.Show();
         }
+
+        private void botonBuscarPaciente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var buscarPaciente = new BuscarPaciente();
+            buscarPaciente.Show();
+        }
     }
 }

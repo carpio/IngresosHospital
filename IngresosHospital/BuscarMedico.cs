@@ -49,6 +49,7 @@ namespace IngresosHospital
                     //Permitir que el usuario confirme los cambios para el renglón específico
                     DialogResult dialogo = MessageBox.Show("El médico con ID: " + idMedico.ToString() + " será actualizado.", "¿Desea continuar?", MessageBoxButtons.OKCancel);
 
+                    //Si el usuario presiona OK, entonces se guardan los cambios:
                     if (dialogo == DialogResult.OK)
                     {                    
                         dbContext.Entry(medico).State = System.Data.Entity.EntityState.Modified;

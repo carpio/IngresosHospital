@@ -37,6 +37,7 @@
             this.botonGuardarMedico = new System.Windows.Forms.Button();
             this.botonNuevoIngreso = new System.Windows.Forms.Button();
             this.botonMenuPrincipal = new System.Windows.Forms.Button();
+            this.botonBuscarPaciente = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -106,11 +107,22 @@
             this.botonMenuPrincipal.UseVisualStyleBackColor = true;
             this.botonMenuPrincipal.Click += new System.EventHandler(this.botonMenuPrincipal_Click);
             // 
+            // botonBuscarPaciente
+            // 
+            this.botonBuscarPaciente.Location = new System.Drawing.Point(197, 415);
+            this.botonBuscarPaciente.Name = "botonBuscarPaciente";
+            this.botonBuscarPaciente.Size = new System.Drawing.Size(188, 23);
+            this.botonBuscarPaciente.TabIndex = 8;
+            this.botonBuscarPaciente.Text = "Buscar paciente";
+            this.botonBuscarPaciente.UseVisualStyleBackColor = true;
+            this.botonBuscarPaciente.Click += new System.EventHandler(this.botonBuscarPaciente_Click);
+            // 
             // AgregarPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.botonBuscarPaciente);
             this.Controls.Add(this.botonMenuPrincipal);
             this.Controls.Add(this.botonNuevoIngreso);
             this.Controls.Add(this.botonGuardarMedico);
@@ -135,5 +147,6 @@
         private System.Windows.Forms.Button botonGuardarMedico;
         private System.Windows.Forms.Button botonNuevoIngreso;
         private System.Windows.Forms.Button botonMenuPrincipal;
+        private System.Windows.Forms.Button botonBuscarPaciente;
     }
 }
