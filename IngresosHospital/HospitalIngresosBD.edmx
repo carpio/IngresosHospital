@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Ingresos_HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_Ingresos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Habitacion" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Paciente" Type="int" Nullable="false" />
+          <Property Name="ID_Medico" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Medico">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="T_Paciente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ingresos_Hospital.dbo.Pacientes_Con_Ingresos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Pacientes_Con_Ingresos">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="ID" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ingresos_Hospital.dbo.V_Ingresos_Medicos_Pacientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Ingresos_Medicos_Pacientes">
+          <Key>
+            <PropertyRef Name="Fecha de Ingreso" />
+          </Key>
+          <Property Name="Fecha de Ingreso" Type="datetime" Nullable="false" />
+          <Property Name="Nombre del Medico" Type="varchar" MaxLength="100" />
+          <Property Name="Nombre del Paciente" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_T_Ingresos_T_Medico">
+          <End Role="T_Medico" Type="Self.T_Medico" Multiplicity="1" />
+          <End Role="T_Ingresos" Type="Self.T_Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Medico">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_Ingresos">
+              <PropertyRef Name="ID_Medico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Ingresos_T_Paciente">
+          <End Role="T_Paciente" Type="Self.T_Paciente" Multiplicity="1" />
+          <End Role="T_Ingresos" Type="Self.T_Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Paciente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_Ingresos">
+              <PropertyRef Name="ID_Paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Ingresos_HospitalModelStoreContainer">
+          <EntitySet Name="T_Ingresos" EntityType="Self.T_Ingresos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Medico" EntityType="Self.T_Medico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Paciente" EntityType="Self.T_Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacientes_Con_Ingresos" EntityType="Self.Pacientes_Con_Ingresos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Pacientes_Con_Ingresos].[Fecha] AS [Fecha], 
+    [Pacientes_Con_Ingresos].[ID] AS [ID], 
+    [Pacientes_Con_Ingresos].[Nombre] AS [Nombre], 
+    [Pacientes_Con_Ingresos].[Apellidos] AS [Apellidos]
+    FROM [dbo].[Pacientes_Con_Ingresos] AS [Pacientes_Con_Ingresos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Ingresos_Medicos_Pacientes" EntityType="Self.V_Ingresos_Medicos_Pacientes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Ingresos_Medicos_Pacientes].[Fecha de Ingreso] AS [Fecha de Ingreso], 
+    [V_Ingresos_Medicos_Pacientes].[Nombre del Medico] AS [Nombre del Medico], 
+    [V_Ingresos_Medicos_Pacientes].[Nombre del Paciente] AS [Nombre del Paciente]
+    FROM [dbo].[V_Ingresos_Medicos_Pacientes] AS [V_Ingresos_Medicos_Pacientes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_T_Ingresos_T_Medico" Association="Self.FK_T_Ingresos_T_Medico">
+            <End Role="T_Medico" EntitySet="T_Medico" />
+            <End Role="T_Ingresos" EntitySet="T_Ingresos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Ingresos_T_Paciente" Association="Self.FK_T_Ingresos_T_Paciente">
+            <End Role="T_Paciente" EntitySet="T_Paciente" />
+            <End Role="T_Ingresos" EntitySet="T_Ingresos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Ingresos_HospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_Ingresos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Habitacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Paciente" Type="Int32" Nullable="false" />
+          <Property Name="ID_Medico" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_Medico" Relationship="Self.FK_T_Ingresos_T_Medico" FromRole="T_Ingresos" ToRole="T_Medico" />
+          <NavigationProperty Name="T_Paciente" Relationship="Self.FK_T_Ingresos_T_Paciente" FromRole="T_Ingresos" ToRole="T_Paciente" />
+        </EntityType>
+        <EntityType Name="T_Medico">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Ingresos" Relationship="Self.FK_T_Ingresos_T_Medico" FromRole="T_Medico" ToRole="T_Ingresos" />
+        </EntityType>
+        <EntityType Name="T_Paciente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Ingresos" Relationship="Self.FK_T_Ingresos_T_Paciente" FromRole="T_Paciente" ToRole="T_Ingresos" />
+        </EntityType>
+        <EntityType Name="Pacientes_Con_Ingresos">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_Ingresos_Medicos_Pacientes">
+          <Key>
+            <PropertyRef Name="Fecha_de_Ingreso" />
+          </Key>
+          <Property Name="Fecha_de_Ingreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nombre_del_Medico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_del_Paciente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_T_Ingresos_T_Medico">
+          <End Role="T_Medico" Type="Self.T_Medico" Multiplicity="1" />
+          <End Role="T_Ingresos" Type="Self.T_Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Medico">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_Ingresos">
+              <PropertyRef Name="ID_Medico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Ingresos_T_Paciente">
+          <End Role="T_Paciente" Type="Self.T_Paciente" Multiplicity="1" />
+          <End Role="T_Ingresos" Type="Self.T_Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Paciente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_Ingresos">
+              <PropertyRef Name="ID_Paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Ingresos_HospitalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_Ingresos" EntityType="Self.T_Ingresos" />
+          <EntitySet Name="T_Medico" EntityType="Self.T_Medico" />
+          <EntitySet Name="T_Paciente" EntityType="Self.T_Paciente" />
+          <EntitySet Name="Pacientes_Con_Ingresos" EntityType="Self.Pacientes_Con_Ingresos" />
+          <EntitySet Name="V_Ingresos_Medicos_Pacientes" EntityType="Self.V_Ingresos_Medicos_Pacientes" />
+          <AssociationSet Name="FK_T_Ingresos_T_Medico" Association="Self.FK_T_Ingresos_T_Medico">
+            <End Role="T_Medico" EntitySet="T_Medico" />
+            <End Role="T_Ingresos" EntitySet="T_Ingresos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Ingresos_T_Paciente" Association="Self.FK_T_Ingresos_T_Paciente">
+            <End Role="T_Paciente" EntitySet="T_Paciente" />
+            <End Role="T_Ingresos" EntitySet="T_Ingresos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Ingresos_HospitalModelStoreContainer" CdmEntityContainer="Ingresos_HospitalEntities">
+          <EntitySetMapping Name="T_Ingresos">
+            <EntityTypeMapping TypeName="Ingresos_HospitalModel.T_Ingresos">
+              <MappingFragment StoreEntitySet="T_Ingresos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Habitacion" ColumnName="Habitacion" />
+                <ScalarProperty Name="ID_Paciente" ColumnName="ID_Paciente" />
+                <ScalarProperty Name="ID_Medico" ColumnName="ID_Medico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Medico">
+            <EntityTypeMapping TypeName="Ingresos_HospitalModel.T_Medico">
+              <MappingFragment StoreEntitySet="T_Medico">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Paciente">
+            <EntityTypeMapping TypeName="Ingresos_HospitalModel.T_Paciente">
+              <MappingFragment StoreEntitySet="T_Paciente">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacientes_Con_Ingresos">
+            <EntityTypeMapping TypeName="Ingresos_HospitalModel.Pacientes_Con_Ingresos">
+              <MappingFragment StoreEntitySet="Pacientes_Con_Ingresos">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Ingresos_Medicos_Pacientes">
+            <EntityTypeMapping TypeName="Ingresos_HospitalModel.V_Ingresos_Medicos_Pacientes">
+              <MappingFragment StoreEntitySet="V_Ingresos_Medicos_Pacientes">
+                <ScalarProperty Name="Fecha_de_Ingreso" ColumnName="Fecha de Ingreso" />
+                <ScalarProperty Name="Nombre_del_Medico" ColumnName="Nombre del Medico" />
+                <ScalarProperty Name="Nombre_del_Paciente" ColumnName="Nombre del Paciente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
