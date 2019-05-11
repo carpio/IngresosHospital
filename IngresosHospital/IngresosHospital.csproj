@@ -208,6 +208,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Base de datos\IngresosHospital_ScriptDB.sql" />
     <Content Include="HospitalIngresosBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HospitalIngresosBD.edmx</DependentUpon>
