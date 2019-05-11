@@ -23,6 +23,7 @@ namespace IngresosHospital
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_Ingresos> T_Ingresos { get; set; }

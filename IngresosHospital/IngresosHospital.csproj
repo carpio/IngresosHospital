@@ -67,6 +67,18 @@
     <Compile Include="AgregarPaciente.Designer.cs">
       <DependentUpon>AgregarPaciente.cs</DependentUpon>
     </Compile>
+    <Compile Include="antiguedadMedico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="antiguedadMedico.Designer.cs">
+      <DependentUpon>antiguedadMedico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="antiguedadPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="antiguedadPaciente.Designer.cs">
+      <DependentUpon>antiguedadPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuscarMedico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +112,11 @@
     <Compile Include="Ingresos.Designer.cs">
       <DependentUpon>Ingresos.cs</DependentUpon>
     </Compile>
+    <Compile Include="IngresosMedicos.cs" />
+    <Compile Include="IngresosPacientes.cs" />
+    <Compile Include="Ingresos_HospitalDataSet.cs">
+      <DependentUpon>Ingresos_HospitalDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Ingresos_HospitalDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -130,6 +147,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rangoMedicos.cs" />
+    <Compile Include="rangoPacientes.cs" />
+    <Compile Include="ReporteIngresosMedicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteIngresosMedicos.Designer.cs">
+      <DependentUpon>ReporteIngresosMedicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteIngresosPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteIngresosPaciente.Designer.cs">
+      <DependentUpon>ReporteIngresosPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="T_Ingresos.cs">
       <DependentUpon>HospitalIngresosBD.tt</DependentUpon>
     </Compile>
@@ -147,6 +178,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarPaciente.resx">
       <DependentUpon>AgregarPaciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="antiguedadMedico.resx">
+      <DependentUpon>antiguedadMedico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="antiguedadPaciente.resx">
+      <DependentUpon>antiguedadPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarMedico.resx">
       <DependentUpon>BuscarMedico.cs</DependentUpon>
@@ -175,6 +212,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReporteIngresosMedicos.resx">
+      <DependentUpon>ReporteIngresosMedicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteIngresosPaciente.resx">
+      <DependentUpon>ReporteIngresosPaciente.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="HospitalIngresosBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HospitalIngresosBD.Designer.cs</LastGenOutput>

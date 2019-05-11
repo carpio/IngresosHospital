@@ -30,5 +30,33 @@ namespace IngresosHospital
             var agregarPaciente = new AgregarPaciente();
             agregarPaciente.Show();
         }
+
+        private void botonIngresosPaciente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var reporteIngresosPacientes = new ReporteIngresosPaciente();
+            reporteIngresosPacientes.Show();
+        }
+
+        private void botonIngresosMedicos_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var reporteIngresosMedicos = new ReporteIngresosMedicos();
+            reporteIngresosMedicos.Show();
+        }
+
+        private void buttonAntiguedadPaciente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var antiguedadPaciente = new antiguedadPaciente();
+            antiguedadPaciente.Show();
+        }
+
+        private void buttonAntiguedadMedico_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var antiguedadMedico = new antiguedadMedico();
+            antiguedadMedico.Show();
+        }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Ingresos_HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Ingresos_HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="T_Ingresos">
           <Key>
             <PropertyRef Name="ID" />
@@ -22,6 +22,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="T_Paciente">
           <Key>
@@ -30,6 +31,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Ingresos_Hospital.dbo.Pacientes_Con_Ingresos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -104,8 +106,7 @@ warning 6002: The table/view 'Ingresos_Hospital.dbo.V_Ingresos_Medicos_Pacientes
             <End Role="T_Ingresos" EntitySet="T_Ingresos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Ingresos_HospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -129,6 +130,7 @@ warning 6002: The table/view 'Ingresos_Hospital.dbo.V_Ingresos_Medicos_Pacientes
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="T_Ingresos" Relationship="Self.FK_T_Ingresos_T_Medico" FromRole="T_Medico" ToRole="T_Ingresos" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="T_Paciente">
           <Key>
@@ -138,6 +140,7 @@ warning 6002: The table/view 'Ingresos_Hospital.dbo.V_Ingresos_Medicos_Pacientes
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="T_Ingresos" Relationship="Self.FK_T_Ingresos_T_Paciente" FromRole="T_Paciente" ToRole="T_Ingresos" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Pacientes_Con_Ingresos">
           <Key>
@@ -215,6 +218,7 @@ warning 6002: The table/view 'Ingresos_Hospital.dbo.V_Ingresos_Medicos_Pacientes
           <EntitySetMapping Name="T_Medico">
             <EntityTypeMapping TypeName="Ingresos_HospitalModel.T_Medico">
               <MappingFragment StoreEntitySet="T_Medico">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
@@ -224,6 +228,7 @@ warning 6002: The table/view 'Ingresos_Hospital.dbo.V_Ingresos_Medicos_Pacientes
           <EntitySetMapping Name="T_Paciente">
             <EntityTypeMapping TypeName="Ingresos_HospitalModel.T_Paciente">
               <MappingFragment StoreEntitySet="T_Paciente">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />

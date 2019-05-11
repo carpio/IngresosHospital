@@ -24,6 +24,7 @@ namespace IngresosHospital
             //1. Tomar los valores que se van a guardar
             var nombrePaciente = cajaTextoNombrePaciente.Text;
             var apellidoPaciente = cajaTextoApellidoPaciente.Text;
+            var fechaPaciente = DateTime.Now;
 
             //Si Nombre y Apellidos son de tamaño menor o igual a 100, coninuar
             if (nombrePaciente.Length <= 100 && apellidoPaciente.Length <= 100)
@@ -34,6 +35,7 @@ namespace IngresosHospital
                 //3. Asignar los valores que se tomaron en el paso 1
                 nuevoPaciente.Nombre = nombrePaciente;
                 nuevoPaciente.Apellidos = apellidoPaciente;
+                nuevoPaciente.Fecha = fechaPaciente;
 
                 //Manejo de Excepción (Error) para cuando ocurra durante 
                 //el INSERT en la base de datos
